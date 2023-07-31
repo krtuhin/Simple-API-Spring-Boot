@@ -29,8 +29,15 @@ public class BookService {
     public Book getBook(int id) {
         Book book = null;
 
-        // like for each loop
-        book = bookList.stream().filter(b -> b.getId() == id).findFirst().get();
+        //when book is null
+        try {
+            // like for each loop
+            book = bookList.stream().filter(b -> b.getId() == id).findFirst().get();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
 
         return book;
     }
@@ -51,7 +58,6 @@ public class BookService {
         // Book book = null;
         // book = bookList.stream().filter(u -> u.getId() == id).findFirst().get();
         // bookList.remove(book);
-
         bookList = bookList.stream().filter(b -> b.getId() != id).collect(Collectors.toList());
     }
 
